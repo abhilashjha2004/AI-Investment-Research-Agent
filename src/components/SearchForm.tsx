@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Search, Loader2 } from 'lucide-react';
+import { Search, Loader2, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface SearchFormProps {
   onSearch: (company: string) => void;
@@ -32,56 +33,65 @@ export default function SearchForm({ onSearch, isLoading }: SearchFormProps) {
   };
 
   return (
-    <div className="w-full rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md">
+    <div className="w-full rounded-[20px] border border-[#1F2937] bg-slate-900/40 p-6 backdrop-blur-md">
       <form onSubmit={handleSubmit} className="space-y-4">
-        <label htmlFor="company-search" className="block text-sm font-medium text-slate-300">
-          Enter Company Name for Research
+        <label htmlFor="company-search" className="block text-sm font-semibold text-[#94A3B8] tracking-wide">
+          Search Company Directory
         </label>
         
-        <div className="flex flex-col gap-3 sm:flex-row">
+        <div className="flex flex-col gap-4 sm:flex-row">
           <div className="relative flex-1">
             <Search className="absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 text-slate-400" />
             <input
               id="company-search"
               type="text"
-              placeholder="e.g. Tesla, Nvidia, Apple..."
+              placeholder="Search any public company..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               disabled={isLoading}
-              className="w-full rounded-xl border border-white/10 bg-slate-950/40 py-3.5 pr-4 pl-12 text-white placeholder-slate-500 shadow-inner outline-none transition-all focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 disabled:opacity-50"
+              className="w-full rounded-[18px] border border-[#1F2937] bg-slate-950/60 py-4 pr-4 pl-12 text-[#F8FAFC] placeholder-slate-500 shadow-inner outline-none transition-all duration-200 focus:border-emerald-500/25 focus:ring-1 focus:ring-emerald-500/25 focus:bg-slate-950/80 disabled:opacity-50 text-sm md:text-base"
             />
           </div>
           
-          <button
+          <motion.button
+            whileHover={{ scale: 1.03, boxShadow: '0 0 15px rgba(16, 185, 129, 0.15)' }}
+            whileTap={{ scale: 0.97 }}
             type="submit"
             disabled={isLoading || !query.trim()}
-            className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-3.5 font-semibold text-white shadow-lg shadow-purple-500/20 hover:from-blue-500 hover:to-purple-500 active:scale-98 disabled:pointer-events-none disabled:opacity-50 transition-all duration-150"
+            className="relative overflow-hidden flex items-center justify-center gap-2 rounded-[18px] bg-gradient-to-r from-emerald-500 to-emerald-600 px-8 py-4 font-bold text-[#F8FAFC] shadow-lg shadow-emerald-500/5 hover:shadow-emerald-500/15 disabled:pointer-events-none disabled:opacity-50 transition-all duration-200 cursor-pointer"
           >
             {isLoading ? (
               <>
                 <Loader2 className="h-5 w-5 animate-spin" />
-                <span>Analyzing...</span>
+                <span>Running Workflow...</span>
               </>
             ) : (
-              <span>Start Analysis</span>
+              <>
+                <Sparkles className="h-4.5 w-4.5 text-emerald-200" />
+                <span>Analyze Company</span>
+              </>
             )}
-          </button>
+          </motion.button>
         </div>
       </form>
 
-      <div className="mt-4">
-        <span className="text-xs text-slate-400">Suggestions:</span>
-        <div className="mt-2 flex flex-wrap gap-2">
+      <div className="mt-5 flex flex-col sm:flex-row sm:items-center gap-3">
+        <span className="text-xs font-semibold text-[#94A3B8] tracking-wide uppercase shrink-0">
+          Try Researching:
+        </span>
+        <div className="flex flex-wrap gap-2">
           {suggestions.map((s) => (
-            <button
+            <motion.button
+              whileHover={{ scale: 1.04, y: -1 }}
+              whileTap={{ scale: 0.96 }}
               key={s.symbol}
               type="button"
               disabled={isLoading}
               onClick={() => handleSuggestionClick(s.name)}
-              className="rounded-lg border border-white/5 bg-slate-950/20 px-3 py-1.5 text-xs text-slate-300 hover:border-blue-500/30 hover:bg-blue-500/10 hover:text-white disabled:pointer-events-none disabled:opacity-50 transition-all duration-150"
+              className="rounded-xl border border-[#1F2937] bg-slate-950/30 px-3.5 py-1.5 text-xs text-slate-300 hover:border-emerald-500/20 hover:bg-emerald-500/5 hover:text-[#F8FAFC] disabled:pointer-events-none disabled:opacity-40 transition-all duration-200 cursor-pointer"
             >
-              {s.name} <span className="text-slate-500">({s.symbol})</span>
-            </button>
+              {s.name} <span className="text-slate-500 font-medium">({s.symbol})</span>
+            </motion.button>
           ))}
         </div>
       </div>
