@@ -6,9 +6,21 @@ The application orchestrates a structured, multi-agent workflow using **LangGrap
 
 ---
 
-## 🔗 Live Demo
-Explore the deployed application here: **[InvestResearch AI Dashboard]([https://invest-research-ai.vercel.app/](https://invest-research-ai-agent.vercel.app/))** *(Placeholder)*
+## 🌐 Live Demo
 
+The application is deployed on **Vercel** and demonstrates the complete end-to-end AI investment research workflow.
+
+🚀 **Live URL:** https://invest-research-ai-agent.vercel.app/
+
+Features available in the live demo:
+
+- ✅ Multi-Agent LangGraph Workflow
+- ✅ Gemini AI Analysis
+- ✅ Tavily Real-Time Search
+- ✅ Live Agent Execution Timeline
+- ✅ Investment Recommendation
+- ✅ Confidence Score
+- ✅ PDF Export
 ---
 
 ## 📝 Project Overview
