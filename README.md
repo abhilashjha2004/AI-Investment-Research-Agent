@@ -7,7 +7,7 @@ The application orchestrates a structured, multi-agent workflow using **LangGrap
 ---
 
 ## 🔗 Live Demo
-Explore the deployed application here: **[InvestResearch AI Dashboard](https://invest-research-ai.vercel.app/)** *(Placeholder)*
+Explore the deployed application here: **[InvestResearch AI Dashboard]([https://invest-research-ai.vercel.app/](https://invest-research-ai-agent.vercel.app/))** *(Placeholder)*
 
 ---
 
